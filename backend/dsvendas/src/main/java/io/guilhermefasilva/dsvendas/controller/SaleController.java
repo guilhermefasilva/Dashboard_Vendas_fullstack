@@ -1,6 +1,8 @@
 package io.guilhermefasilva.dsvendas.controller;
 
 import io.guilhermefasilva.dsvendas.dto.SaleDto;
+import io.guilhermefasilva.dsvendas.dto.SaleSuccessDto;
+import io.guilhermefasilva.dsvendas.dto.SaleSumDto;
 import io.guilhermefasilva.dsvendas.dto.SallerDto;
 import io.guilhermefasilva.dsvendas.service.SaleService;
 import io.guilhermefasilva.dsvendas.service.SallerService;
@@ -26,4 +28,16 @@ public class SaleController {
         Page<SaleDto> list = saleService.findAll(pageable);
         return ResponseEntity.ok(list);
     }
+    @GetMapping(value = "/amount-by-saller")
+    public ResponseEntity<List<SaleSumDto>> amountGroupedBySaller(){
+        List<SaleSumDto> list = saleService.amountGroupedBySaller();
+        return ResponseEntity.ok(list);
+    }
+
+    @GetMapping(value = "/success-by-saller")
+    public ResponseEntity<List<SaleSuccessDto>> successGroupedBySaller(){
+        List<SaleSuccessDto> list = saleService.successGroupedBySaller();
+        return ResponseEntity.ok(list);
+    }
+
 }
